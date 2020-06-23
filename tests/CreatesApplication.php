@@ -2,6 +2,7 @@
 
 namespace Dcat\Laravel\Database\Tests;
 
+use Dcat\Laravel\Database\WhereHasInServiceProvider;
 use Illuminate\Contracts\Console\Kernel;
 
 trait CreatesApplication
@@ -13,9 +14,11 @@ trait CreatesApplication
      */
     public function createApplication()
     {
-        $app = require __DIR__.'/../bootstrap/app.php';
+        $app = require __DIR__.'/../vendor/laravel/laravel/bootstrap/app.php';
 
-        $app->make(Kernel::class)->bootstrap();
+        $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
+
+        $app->register(WhereHasInServiceProvider::class);
 
         return $app;
     }
