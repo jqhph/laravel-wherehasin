@@ -1,0 +1,43 @@
+{
+  "name": "dcat/laravel-wherehasin",
+  "description": "Laravel ORM whereHasIn",
+  "type": "library",
+  "keywords": ["laravel", "orm", "whereHas", "relation"],
+  "homepage": "https://github.com/jqhph/dcat-admin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "jqh",
+      "email": "841324345@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "laravel/framework": "~5.5|~6.0|~7.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.5",
+    "fzaninotto/faker": "^1.4",
+    "mockery/mockery": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dcat\\Laravel\\Database\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Dcat\\Laravel\\Database\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Dcat\\Laravel\\Database\\WhereHasInServiceProvider"
+      ]
+    }
+  }
+}
