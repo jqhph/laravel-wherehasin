@@ -3,9 +3,7 @@
 namespace Dcat\Laravel\Database\Tests;
 
 use CreateTestTables;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 abstract class TestCase extends BaseTestCase
@@ -14,6 +12,8 @@ abstract class TestCase extends BaseTestCase
 
     protected function setUp(): void
     {
+        include_once __DIR__.'/helpers.php';
+
         parent::setUp();
 
         $this->app['config']->set('database.default', 'mysql');
@@ -25,16 +25,20 @@ abstract class TestCase extends BaseTestCase
 
         Schema::defaultStringLength(191);
 
-        $this->migrateTestTables();
+        //$this->migrateTestTables();
 
-        require __DIR__.'/resources/seeds/factory.php';
+        include_once __DIR__.'/resources/seeds/factory.php';
+
+        create_suppliers();
+        create_histories();
+        create_users();
+        create_contries();
+        create_posts();
     }
 
     protected function tearDown(): void
     {
-        (new CreateTestTables())->down();
-
-        DB::select("delete from `migrations` where `migration` = '2016_01_04_173148_create_admin_tables'");
+        //(new CreateTestTables())->down();
 
         parent::tearDown();
     }
@@ -46,9 +50,7 @@ abstract class TestCase extends BaseTestCase
      */
     public function migrateTestTables()
     {
-        $fileSystem = new Filesystem();
-
-        $fileSystem->requireOnce(__DIR__.'/resources/migrations/2020_06_23_224641_create_test_tables.php');
+        include_once __DIR__.'/resources/migrations/2020_06_23_224641_create_test_tables.php';
 
         (new CreateTestTables())->up();
     }

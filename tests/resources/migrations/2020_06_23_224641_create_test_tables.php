@@ -47,6 +47,13 @@ class CreateTestTables extends Migration
             $table->timestamps();
         });
 
+        Schema::create('test_user_painters', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->integer('painter_id');
+            $table->index(['user_id', 'tag_id']);
+            $table->timestamps();
+        });
+
         Schema::create('test_painters', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username')->default('');
@@ -61,7 +68,7 @@ class CreateTestTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('test_supplers', function (Blueprint $table) {
+        Schema::create('test_suppliers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->default('');
             $table->timestamps();
@@ -98,9 +105,10 @@ class CreateTestTables extends Migration
         Schema::dropIfExists('test_user_profiles');
         Schema::dropIfExists('test_tags');
         Schema::dropIfExists('test_user_tags');
+        Schema::dropIfExists('test_user_painters');
         Schema::dropIfExists('test_painters');
         Schema::dropIfExists('test_paintings');
-        Schema::dropIfExists('test_supplers');
+        Schema::dropIfExists('test_suppliers');
         Schema::dropIfExists('test_histories');
         Schema::dropIfExists('test_countries');
         Schema::dropIfExists('test_posts');
