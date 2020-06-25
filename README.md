@@ -31,10 +31,13 @@ composer require dcat/laravel-wherehasin
 
 ### 简介
 
-`Laravel`的关联关系查询`whereHas`在日常开发中给我们带来了极大的便利，但是在**主表**数据量比较多的时候会有比较严重的性能问题，主要是因为`whereHas`用了`where exists (select * ...)`这种方式去查询关联数据。通过这个扩展包提供的`whereHasIn`方法，可以把语句转化为`where id in (select xxx.id ...)`的形式，从而提高查询性能，下面我们来做一个简单的对比：
+`Laravel`的关联关系查询`whereHas`在日常开发中给我们带来了极大的便利，但是在**主表**数据量比较多的时候会有比较严重的性能问题，主要是因为`whereHas`用了`where exists (select * ...)`这种方式去查询关联数据。
 
 
-> 主表数据量大，子表数据量小的情况下，`where id in`会有明显的性能提升；当主表数据量较小的时候，两者性能相差无几。
+通过这个扩展包提供的`whereHasIn`方法，可以把语句转化为`where id in (select xxx.id ...)`的形式，从而提高查询性能，下面我们来做一个简单的对比：
+
+
+> 当主表数据量较多的情况下，`where id in`会有明显的性能提升；当主表数据量较少的时候，两者性能相差无几。
 
 
 主表`test_users`写入`130002`条数据，关联表`test_user_profiles`写入`1002`条数据，查询代码如下
