@@ -10,7 +10,7 @@ class BelongsToTest extends TestCase
     public function testSQL()
     {
         /**
-         * whereHas sql
+         * whereHas sql.
          *
          * select * from `test_user_profiles` where exists
          *   (
@@ -26,7 +26,7 @@ class BelongsToTest extends TestCase
         );
 
         /**
-         * whereHas sql
+         * whereHas sql.
          *
          * select * from `test_user_profiles` where exists
          *   (

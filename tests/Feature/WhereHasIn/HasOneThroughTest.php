@@ -10,7 +10,7 @@ class HasOneThroughTest extends TestCase
     public function testSQL()
     {
         /**
-         * whereHas sql
+         * whereHas sql.
          *
          * select * from `test_suppliers` where exists
          *   (
@@ -28,7 +28,7 @@ class HasOneThroughTest extends TestCase
         );
 
         /**
-         * whereHas sql
+         * whereHas sql.
          *
          * select * from `test_countries` where exists
          *   (
