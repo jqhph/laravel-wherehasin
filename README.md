@@ -51,7 +51,8 @@ composer require dcat/laravel-wherehasin
  *   (
  *     select `test_user_profiles`.`user_id` from `test_user_profiles` 
  *     where `test_users`.`id` = `test_user_profiles`.`user_id`
- * ) 
+ *  ) 
+ * limit 10
  */
 $users1 = User::whereHas('profile')->limit(10)->get();
 
@@ -62,8 +63,8 @@ $users1 = User::whereHas('profile')->limit(10)->get();
  *   (
  *     select `test_user_profiles`.`user_id` from `test_user_profiles` 
  *     where `test_users`.`id` = `test_user_profiles`.`user_id`
- * ) 
- * and `email` like ?
+ *   ) 
+ * limit 10
  */
 $users1 = User::whereHasIn('profile')->limit(10)->get();
 ```
