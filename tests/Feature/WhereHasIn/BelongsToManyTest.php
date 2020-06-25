@@ -10,7 +10,7 @@ class BelongsToManyTest extends TestCase
     public function testSQL()
     {
         /**
-         * 查询含有标签的用户
+         * 查询含有标签的用户.
          *
          * whereHas sql
          *
@@ -29,7 +29,7 @@ class BelongsToManyTest extends TestCase
         );
 
         /**
-         * whereHas sql
+         * whereHas sql.
          *
          * select * from `test_users` where exists
          *   (
@@ -51,14 +51,13 @@ class BelongsToManyTest extends TestCase
     public function testOrWhereSQL()
     {
         /**
-         * orWhereHas sql
+         * orWhereHas sql.
          *
          * select * from `test_users` where `id` > ? or exists
          *   (
          *     select * from `test_tags` inner join `test_user_tags` on `test_tags`.`id` = `test_user_tags`.`tag_id`
          *     where `test_users`.`id` = `test_user_tags`.`user_id`
          * )
-         *
          */
         $sql1 = User::where('id', '>', 10)->orWhereHasIn('tags')->toSql();
 
@@ -68,7 +67,7 @@ class BelongsToManyTest extends TestCase
         );
 
         /**
-         * orWhereHas sql
+         * orWhereHas sql.
          *
          * select * from `test_users` where `id` > ? or exists
          *   (

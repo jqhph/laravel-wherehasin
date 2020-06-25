@@ -3,7 +3,6 @@
 namespace Dcat\Laravel\Database\Tests;
 
 use Dcat\Laravel\Database\WhereHasInServiceProvider;
-use Illuminate\Contracts\Console\Kernel;
 
 trait CreatesApplication
 {
