@@ -25,7 +25,7 @@ abstract class TestCase extends BaseTestCase
 
         Schema::defaultStringLength(191);
 
-        //$this->migrateTestTables();
+        $this->migrateTestTables();
 
         include_once __DIR__.'/resources/seeds/factory.php';
 
@@ -38,7 +38,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function tearDown(): void
     {
-        //(new CreateTestTables())->down();
+        (new CreateTestTables())->down();
 
         parent::tearDown();
     }

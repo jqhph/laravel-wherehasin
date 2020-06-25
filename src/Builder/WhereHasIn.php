@@ -85,24 +85,16 @@ class WhereHasIn
 
         $keyName = $this->builder->getModel()->getQualifiedKeyName();
 
-        if ($relation instanceof Relations\HasMany) {
+        if (
+            $relation instanceof Relations\HasOne
+            || $relation instanceof Relations\HasMany
+        ) {
             return $this->builder->whereIn(
                 $keyName,
                 $this->withRelationQueryCallback(
                     $relationQuery
                         ->select($relation->getQualifiedForeignKeyName())
                         ->whereColumn($keyName, $relation->getQualifiedForeignKeyName())
-                )
-            );
-        }
-
-        // 可以不需要whereColumn
-        if ($relation instanceof Relations\HasOne) {
-            return $this->builder->whereIn(
-                $keyName,
-                $this->withRelationQueryCallback(
-                    $relationQuery
-                        ->select($relation->getQualifiedForeignKeyName())
                 )
             );
         }

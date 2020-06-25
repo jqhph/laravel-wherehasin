@@ -12,7 +12,7 @@ class HasOneTest extends TestCase
         $sql1 = User::whereHasIn('profile')->where('email', 'like', '.com%')->toSql();
 
         $this->assertEquals(
-            'select * from `test_users` where `test_users`.`id` in (select `test_user_profiles`.`user_id` from `test_user_profiles`) and `email` like ?',
+            'select * from `test_users` where `test_users`.`id` in (select `test_user_profiles`.`user_id` from `test_user_profiles` where `test_users`.`id` = `test_user_profiles`.`user_id`) and `email` like ?',
             $sql1
         );
 
@@ -22,7 +22,7 @@ class HasOneTest extends TestCase
         })->toSql();
 
         $this->assertEquals(
-            'select * from `test_users` where `test_users`.`id` in (select `test_user_profiles`.`user_id` from `test_user_profiles` where (`id` > ? and `username` like ?))',
+            'select * from `test_users` where `test_users`.`id` in (select `test_user_profiles`.`user_id` from `test_user_profiles` where `test_users`.`id` = `test_user_profiles`.`user_id` and (`id` > ? and `username` like ?))',
             $sql2
         );
     }
@@ -32,7 +32,7 @@ class HasOneTest extends TestCase
         $sql1 = User::where('id', '>', 10)->orWhereHasIn('profile')->toSql();
 
         $this->assertEquals(
-            'select * from `test_users` where `id` > ? or (`test_users`.`id` in (select `test_user_profiles`.`user_id` from `test_user_profiles`))',
+            'select * from `test_users` where `id` > ? or (`test_users`.`id` in (select `test_user_profiles`.`user_id` from `test_user_profiles` where `test_users`.`id` = `test_user_profiles`.`user_id`))',
             $sql1
         );
 
@@ -42,7 +42,7 @@ class HasOneTest extends TestCase
         })->toSql();
 
         $this->assertEquals(
-            'select * from `test_users` where `id` > ? or (`test_users`.`id` in (select `test_user_profiles`.`user_id` from `test_user_profiles` where (`id` > ? and `username` like ?)))',
+            'select * from `test_users` where `id` > ? or (`test_users`.`id` in (select `test_user_profiles`.`user_id` from `test_user_profiles` where `test_users`.`id` = `test_user_profiles`.`user_id` and (`id` > ? and `username` like ?)))',
             $sql2
         );
     }
