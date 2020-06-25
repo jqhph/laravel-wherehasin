@@ -68,11 +68,11 @@ class HasManyTest extends TestCase
     public function testData()
     {
         $data1 = Painter::whereHasIn('paintings', function ($q) {
-            $q->where('id', '=', 600);
+            $q->where('id', '=', 300);
         })->orderBy('id')->get()->toArray();
 
         $data2 = Painter::whereHas('paintings', function ($q) {
-            $q->where('id', '=', 600);
+            $q->where('id', '=', 300);
         })->orderBy('id')->get()->toArray();
 
         $this->assertEquals($data1, $data2);

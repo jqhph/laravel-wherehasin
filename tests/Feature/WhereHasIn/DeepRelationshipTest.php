@@ -83,11 +83,11 @@ class DeepRelationshipTest extends TestCase
     public function testData()
     {
         $data1 = User::whereHasIn('painters.paintings', function ($q) {
-            $q->whereIn('id', [600, 601]);
+            $q->whereIn('id', [300, 301]);
         })->orderBy('id')->get()->toArray();
 
         $data2 = User::whereHas('painters.paintings', function ($q) {
-            $q->whereIn('id', [600, 601]);
+            $q->whereIn('id', [300, 301]);
         })->orderBy('id')->get()->toArray();
 
         $this->assertEquals($data1, $data2);

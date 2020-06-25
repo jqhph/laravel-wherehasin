@@ -16,7 +16,7 @@ class CreateTestTables extends Migration
         Schema::create('test_users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('supplier_id')->default(0);
@@ -50,7 +50,7 @@ class CreateTestTables extends Migration
         Schema::create('test_user_painters', function (Blueprint $table) {
             $table->integer('user_id');
             $table->integer('painter_id');
-            $table->index(['user_id', 'tag_id']);
+            $table->index(['user_id', 'painter_id']);
             $table->timestamps();
         });
 

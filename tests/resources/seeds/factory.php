@@ -3,11 +3,9 @@
 use Dcat\Laravel\Database\Tests\Models;
 use Faker\Factory as FakerFactory;
 
-$max = 1000;
-
 function create_suppliers()
 {
-    $max = 1000;
+    $max = 500;
     
     $factory = FakerFactory::create();
 
@@ -30,7 +28,7 @@ function create_suppliers()
 function create_contries()
 {
     $factory = FakerFactory::create();
-    $max = 1000;
+    $max = 500;
 
     $data = [];
 
@@ -51,14 +49,14 @@ function create_contries()
 function create_posts()
 {
     $factory = FakerFactory::create();
-    $max = 1000;
+    $max = 500;
 
     $data = [];
 
     for($i = 0; $i < $max; $i++) {
         $data[] = [
             'id'      => $i + 1,
-            'user_id' => mt_rand(1, 1000),
+            'user_id' => mt_rand(1, 500),
             'title'   => $factory->title,
         ];
     }
@@ -73,11 +71,11 @@ function create_posts()
 function create_users()
 {
     $factory = FakerFactory::create();
-    $max = 1000;
+    $max = 500;
 
     $data = [];
 
-    for($i = 0; $i < 1000; $i++) {
+    for($i = 0; $i < 500; $i++) {
         $data[] = [
             'id'                => $i + 1,
             'name'              => $factory->name,
@@ -118,10 +116,10 @@ function create_histories()
 {
     $factory = FakerFactory::create();
 
-    for($i = 0; $i < 800; $i++) {
+    for($i = 0; $i < 500; $i++) {
         $data[] = [
             'id'      => $i + 1,
-            'user_id' => mt_rand(1, 1000),
+            'user_id' => mt_rand(1, 500),
             'log'     => $factory->text(40),
         ];
     }
