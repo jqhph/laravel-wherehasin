@@ -2,8 +2,8 @@
 
 namespace Dcat\Laravel\Database\Builder;
 
-use Illuminate\Database\Eloquent\Relations;
 use Illuminate\Database\Eloquent;
+use Illuminate\Database\Eloquent\Relations;
 
 class WhereHasIn
 {

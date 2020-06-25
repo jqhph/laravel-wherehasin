@@ -10,7 +10,7 @@ class HasManyTest extends TestCase
     public function testSQL()
     {
         /**
-         * whereHas sql
+         * whereHas sql.
          *
          * select * from `test_painters` where exists
          *   (
@@ -26,7 +26,7 @@ class HasManyTest extends TestCase
         );
 
         /**
-         * whereHas sql
+         * whereHas sql.
          *
          * select * from `test_painters` where exists
          *   (

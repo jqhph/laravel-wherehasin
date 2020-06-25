@@ -6,12 +6,12 @@ use Faker\Factory as FakerFactory;
 function create_suppliers()
 {
     $max = 500;
-    
+
     $factory = FakerFactory::create();
 
     $data = [];
 
-    for($i = 0; $i < $max; $i++) {
+    for ($i = 0; $i < $max; $i++) {
         $data[] = [
             'id'   => $i + 1,
             'name' => $factory->name,
@@ -32,7 +32,7 @@ function create_contries()
 
     $data = [];
 
-    for($i = 0; $i < $max; $i++) {
+    for ($i = 0; $i < $max; $i++) {
         $data[] = [
             'id'   => $i + 1,
             'name' => $factory->name,
@@ -53,7 +53,7 @@ function create_posts()
 
     $data = [];
 
-    for($i = 0; $i < $max; $i++) {
+    for ($i = 0; $i < $max; $i++) {
         $data[] = [
             'id'      => $i + 1,
             'user_id' => mt_rand(1, 500),
@@ -75,7 +75,7 @@ function create_users()
 
     $data = [];
 
-    for($i = 0; $i < 500; $i++) {
+    for ($i = 0; $i < 500; $i++) {
         $data[] = [
             'id'                => $i + 1,
             'name'              => $factory->name,
@@ -116,7 +116,7 @@ function create_histories()
 {
     $factory = FakerFactory::create();
 
-    for($i = 0; $i < 500; $i++) {
+    for ($i = 0; $i < 500; $i++) {
         $data[] = [
             'id'      => $i + 1,
             'user_id' => mt_rand(1, 500),
