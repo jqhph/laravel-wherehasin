@@ -11,7 +11,6 @@ function get_cost_second($callback)
     return microtime(true) - $start;
 }
 
-
 function dump_query_sql()
 {
     DB::listen(function ($q) {

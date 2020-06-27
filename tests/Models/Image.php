@@ -9,7 +9,7 @@ class Image extends Model
     protected $table = 'test_images';
 
     /**
-     * 获取拥有此图片的模型
+     * 获取拥有此图片的模型.
      */
     public function imageable()
     {
