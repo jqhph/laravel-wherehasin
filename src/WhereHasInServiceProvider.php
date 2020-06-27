@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 
 class WhereHasInServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function register()
     {
         Eloquent\Builder::macro('whereHasIn', function ($relationName, ?\Closure $callable = null) {
             return (new WhereHasIn($this, $relationName, $callable))->execute();

@@ -22,4 +22,9 @@ class User extends Model
     {
         return $this->belongsToMany(Painter::class, 'test_user_painters', 'user_id', 'painter_id');
     }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }

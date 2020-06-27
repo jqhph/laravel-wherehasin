@@ -92,6 +92,13 @@ class CreateTestTables extends Migration
             $table->string('title')->default('');
             $table->timestamps();
         });
+
+        Schema::create('test_images', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('url')->nullable();
+            $table->integer('imageable_id')->default(0);
+            $table->string('imageable_type')->nullable();
+        });
     }
 
     /**

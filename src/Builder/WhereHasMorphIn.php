@@ -32,7 +32,7 @@ class WhereHasMorphIn
                             };
                         }
 
-                        $query->where($relation->getMorphType(), '=', (new $type)->getMorphClass())
+                        $query->where($relation->getRelated()->getTable().'.'.$relation->getMorphType(), '=', (new $type)->getMorphClass())
                             ->whereHasIn($belongsTo, $callback);
                     });
                 }

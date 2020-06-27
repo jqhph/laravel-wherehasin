@@ -16,4 +16,14 @@ class Tag extends Model
     {
         return $this->belongsToMany(User::class, 'test_user_tags', 'tag_id', 'user_id');
     }
+
+    public function posts()
+    {
+        return $this->morphedByMany(Post::class, 'taggable');
+    }
+
+    public function videos()
+    {
+        return $this->morphedByMany(Video::class, 'taggable');
+    }
 }

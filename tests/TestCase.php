@@ -3,6 +3,8 @@
 namespace Dcat\Laravel\Database\Tests;
 
 use CreateTestTables;
+use Illuminate\Database\Eloquent;
+use Illuminate\Database\Query;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Schema;
 
@@ -34,6 +36,20 @@ abstract class TestCase extends BaseTestCase
         create_users();
         create_contries();
         create_posts();
+
+        $this->extendQueryBuilder();
+    }
+
+    protected function extendQueryBuilder()
+    {
+        Eloquent\Builder::macro('sql', function () {
+            return $this->query->sql();
+        });
+        Query\Builder::macro('sql', function () {
+            $bindings = $this->getBindings();
+
+            return sprintf(str_replace('?', '%s', $this->toSql()), ...$bindings);
+        });
     }
 
     protected function tearDown(): void
@@ -43,11 +59,6 @@ abstract class TestCase extends BaseTestCase
         parent::tearDown();
     }
 
-    /**
-     * run package database migrations.
-     *
-     * @return void
-     */
     public function migrateTestTables()
     {
         include_once __DIR__.'/resources/migrations/2020_06_23_224641_create_test_tables.php';

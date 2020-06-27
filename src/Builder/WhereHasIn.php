@@ -59,17 +59,39 @@ class WhereHasIn
      */
     protected function whereIn($relation)
     {
-        if (
-            $relation instanceof Relations\MorphTo
-            || $relation instanceof Relations\MorphToMany
-            || $relation instanceof Relations\MorphMany
-            || $relation instanceof Relations\MorphOne
-            || $relation instanceof Relations\MorphOneOrMany
-        ) {
+        if ($relation instanceof Relations\MorphTo) {
             throw new \Exception('Please use whereHasMorphIn() for MorphTo relationships.');
         }
 
         $relationQuery = $relation->getQuery();
+        $keyName = $this->builder->getModel()->getQualifiedKeyName();
+
+        if (
+            $relation instanceof Relations\MorphOne
+            || $relation instanceof Relations\MorphMany
+        ) {
+            return $this->builder->whereIn(
+                $keyName,
+                $this->withRelationQueryCallback(
+                    $relationQuery
+                        ->select($relation->getQualifiedForeignKeyName())
+                        ->whereColumn($keyName, $relation->getQualifiedForeignKeyName())
+                        ->where($relation->getQualifiedMorphType(), $relation->getMorphClass())
+                )
+            );
+        }
+
+        if ($relation instanceof Relations\MorphToMany) {
+            return $this->builder->whereIn(
+                $keyName,
+                $this->withRelationQueryCallback(
+                    $relationQuery
+                        ->select($relation->getQualifiedForeignPivotKeyName())
+                        ->whereColumn($keyName, $relation->getQualifiedForeignPivotKeyName())
+                        ->where($relation->getTable().'.'.$relation->getMorphType(), $relation->getMorphClass())
+                )
+            );
+        }
 
         // BelongsTo
         if ($relation instanceof Relations\BelongsTo) {
@@ -82,8 +104,6 @@ class WhereHasIn
                 )
             );
         }
-
-        $keyName = $this->builder->getModel()->getQualifiedKeyName();
 
         if (
             $relation instanceof Relations\HasOne
