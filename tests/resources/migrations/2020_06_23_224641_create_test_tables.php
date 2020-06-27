@@ -119,5 +119,6 @@ class CreateTestTables extends Migration
         Schema::dropIfExists('test_histories');
         Schema::dropIfExists('test_countries');
         Schema::dropIfExists('test_posts');
+        Schema::dropIfExists('test_images');
     }
 }

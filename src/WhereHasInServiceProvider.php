@@ -11,17 +11,17 @@ class WhereHasInServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        Eloquent\Builder::macro('whereHasIn', function ($relationName, ?\Closure $callable = null) {
+        Eloquent\Builder::macro('whereHasIn', function ($relationName, $callable = null) {
             return (new WhereHasIn($this, $relationName, $callable))->execute();
         });
-        Eloquent\Builder::macro('orWhereHasIn', function ($relationName, ?\Closure $callable = null) {
+        Eloquent\Builder::macro('orWhereHasIn', function ($relationName, $callable = null) {
             return $this->orWhere(function ($query) use ($relationName, $callable) {
                 return $query->whereHasIn($relationName, $callable);
             });
         });
 
         Eloquent\Builder::macro('whereHasMorphIn', WhereHasMorphIn::make());
-        Eloquent\Builder::macro('orWhereHasMorphIn', function ($relation, $types, ?\Closure $callback = null) {
+        Eloquent\Builder::macro('orWhereHasMorphIn', function ($relation, $types, $callback = null) {
             return $this->whereHasMorphIn($relation, $types, $callback, 'or');
         });
     }
