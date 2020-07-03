@@ -49,7 +49,7 @@ composer require dcat/laravel-wherehasin
  * 
  * select * from `test_users` where exists
  *   (
- *     select `test_user_profiles`.`user_id` from `test_user_profiles` 
+ *     select * from `test_user_profiles` 
  *     where `test_users`.`id` = `test_user_profiles`.`user_id`
  *  ) 
  * limit 10
