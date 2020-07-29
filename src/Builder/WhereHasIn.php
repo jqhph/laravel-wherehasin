@@ -114,7 +114,7 @@ class WhereHasIn
                 $this->withRelationQueryCallback(
                     $relationQuery
                         ->select($relation->getQualifiedForeignKeyName())
-                        ->whereColumn($keyName, $relation->getQualifiedForeignKeyName())
+                        ->whereColumn($relation->getQualifiedParentKeyName(), $relation->getQualifiedForeignKeyName())
                 )
             );
         }
