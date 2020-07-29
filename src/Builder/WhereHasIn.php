@@ -75,7 +75,7 @@ class WhereHasIn
                 $this->withRelationQueryCallback(
                     $relationQuery
                         ->select($relation->getQualifiedForeignKeyName())
-                        ->whereColumn($keyName, $relation->getQualifiedForeignKeyName())
+                        ->whereColumn($relation->getQualifiedParentKeyName(), $relation->getQualifiedForeignKeyName())
                         ->where($relation->getQualifiedMorphType(), $relation->getMorphClass())
                 )
             );
@@ -87,7 +87,7 @@ class WhereHasIn
                 $this->withRelationQueryCallback(
                     $relationQuery
                         ->select($relation->getQualifiedForeignPivotKeyName())
-                        ->whereColumn($keyName, $relation->getQualifiedForeignPivotKeyName())
+                        ->whereColumn($relation->getQualifiedParentKeyName(), $relation->getQualifiedForeignPivotKeyName())
                         ->where($relation->getTable().'.'.$relation->getMorphType(), $relation->getMorphClass())
                 )
             );
@@ -126,7 +126,7 @@ class WhereHasIn
                 $this->withRelationQueryCallback(
                     $relationQuery
                         ->select($relation->getQualifiedForeignPivotKeyName())
-                        ->whereColumn($keyName, $relation->getQualifiedForeignPivotKeyName())
+                        ->whereColumn($relation->getQualifiedParentKeyName(), $relation->getQualifiedForeignPivotKeyName())
                 )
             );
         }
@@ -140,7 +140,7 @@ class WhereHasIn
                 $this->withRelationQueryCallback(
                     $relationQuery
                         ->select($relation->getQualifiedFirstKeyName())
-                        ->whereColumn($keyName, $relation->getQualifiedFirstKeyName())
+                        ->whereColumn($relation->getQualifiedParentKeyName(), $relation->getQualifiedFirstKeyName())
                 )
             );
         }
