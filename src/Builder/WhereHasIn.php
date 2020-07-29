@@ -140,7 +140,7 @@ class WhereHasIn
                 $this->withRelationQueryCallback(
                     $relationQuery
                         ->select($relation->getQualifiedFirstKeyName())
-                        ->whereColumn($relation->getQualifiedParentKeyName(), $relation->getQualifiedFirstKeyName())
+                        ->whereColumn($relation->getQualifiedLocalKeyName(), $relation->getQualifiedFirstKeyName())
                 )
             );
         }
