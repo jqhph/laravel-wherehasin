@@ -64,14 +64,13 @@ class WhereHasIn
         }
 
         $relationQuery = $relation->getQuery();
-        $keyName = $this->builder->getModel()->getQualifiedKeyName();
 
         if (
             $relation instanceof Relations\MorphOne
             || $relation instanceof Relations\MorphMany
         ) {
             return $this->builder->whereIn(
-                $keyName,
+                $relation->getQualifiedParentKeyName(),
                 $this->withRelationQueryCallback(
                     $relationQuery
                         ->select($relation->getQualifiedForeignKeyName())
@@ -83,7 +82,7 @@ class WhereHasIn
 
         if ($relation instanceof Relations\MorphToMany) {
             return $this->builder->whereIn(
-                $keyName,
+                $relation->getQualifiedParentKeyName(),
                 $this->withRelationQueryCallback(
                     $relationQuery
                         ->select($relation->getQualifiedForeignPivotKeyName())
@@ -110,7 +109,7 @@ class WhereHasIn
             || $relation instanceof Relations\HasMany
         ) {
             return $this->builder->whereIn(
-                $keyName,
+                $relation->getQualifiedParentKeyName(),
                 $this->withRelationQueryCallback(
                     $relationQuery
                         ->select($relation->getQualifiedForeignKeyName())
@@ -122,7 +121,7 @@ class WhereHasIn
         // BelongsToMany
         if ($relation instanceof Relations\BelongsToMany) {
             return $this->builder->whereIn(
-                $keyName,
+                $relation->getQualifiedParentKeyName(),
                 $this->withRelationQueryCallback(
                     $relationQuery
                         ->select($relation->getQualifiedForeignPivotKeyName())
@@ -136,7 +135,7 @@ class WhereHasIn
             || $relation instanceof Relations\HasManyThrough
         ) {
             return $this->builder->whereIn(
-                $keyName,
+                $relation->getQualifiedLocalKeyName(),
                 $this->withRelationQueryCallback(
                     $relationQuery
                         ->select($relation->getQualifiedFirstKeyName())
