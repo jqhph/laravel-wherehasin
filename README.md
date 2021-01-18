@@ -7,7 +7,6 @@
      <a href="https://travis-ci.org/jqhph/laravel-wherehasin">
         <img src="https://api.travis-ci.org/jqhph/laravel-wherehasin.svg?branch=master" alt="Build Status">
     </a>
-     
      <a href="https://styleci.io/repos/215738797">
         <img src="https://github.styleci.io/repos/215738797/shield" alt="StyleCI">
     </a>
