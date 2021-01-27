@@ -40,7 +40,7 @@ class HasManyTest extends TestCase
         })->toSql();
 
         $this->assertEquals(
-            'select * from `test_painters` where `test_painters`.`id` in (select `test_paintings`.`painter_id` from `test_paintings` where `test_painters`.`id` = `test_paintings`.`painter_id` and (`id` > ? and `body` like ?))',
+            'select * from `test_painters` where `test_painters`.`id` in (select `test_paintings`.`painter_id` from `test_paintings` where `test_painters`.`id` = `test_paintings`.`painter_id` and `id` > ? and `body` like ?)',
             $sql2
         );
     }
@@ -60,7 +60,7 @@ class HasManyTest extends TestCase
         })->toSql();
 
         $this->assertEquals(
-            'select * from `test_painters` where `id` > ? or (`test_painters`.`id` in (select `test_paintings`.`painter_id` from `test_paintings` where `test_painters`.`id` = `test_paintings`.`painter_id` and (`id` > ? and `body` like ?)))',
+            'select * from `test_painters` where `id` > ? or (`test_painters`.`id` in (select `test_paintings`.`painter_id` from `test_paintings` where `test_painters`.`id` = `test_paintings`.`painter_id` and `id` > ? and `body` like ?))',
             $sql2
         );
     }

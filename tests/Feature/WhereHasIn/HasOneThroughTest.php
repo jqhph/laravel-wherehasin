@@ -43,7 +43,7 @@ class HasOneThroughTest extends TestCase
         })->where('name', 'China')->toSql();
 
         $this->assertEquals(
-            'select * from `test_suppliers` where `test_suppliers`.`id` in (select `test_users`.`supplier_id` from `test_histories` inner join `test_users` on `test_users`.`id` = `test_histories`.`user_id` where `test_suppliers`.`id` = `test_users`.`supplier_id` and (`title` like ?)) and `name` = ?',
+            'select * from `test_suppliers` where `test_suppliers`.`id` in (select `test_users`.`supplier_id` from `test_histories` inner join `test_users` on `test_users`.`id` = `test_histories`.`user_id` where `test_suppliers`.`id` = `test_users`.`supplier_id` and `title` like ?) and `name` = ?',
             $sql2
         );
     }

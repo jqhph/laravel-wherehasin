@@ -39,7 +39,7 @@ class BelongsToTest extends TestCase
         })->toSql();
 
         $this->assertEquals(
-            'select * from `test_user_profiles` where `test_user_profiles`.`user_id` in (select `test_users`.`id` from `test_users` where `test_user_profiles`.`user_id` = `test_users`.`id` and (`username` like ?))',
+            'select * from `test_user_profiles` where `test_user_profiles`.`user_id` in (select `test_users`.`id` from `test_users` where `test_user_profiles`.`user_id` = `test_users`.`id` and `username` like ?)',
             $sql2
         );
     }
@@ -58,7 +58,7 @@ class BelongsToTest extends TestCase
         })->toSql();
 
         $this->assertEquals(
-            'select * from `test_user_profiles` where `post_code` like ? or (`test_user_profiles`.`user_id` in (select `test_users`.`id` from `test_users` where `test_user_profiles`.`user_id` = `test_users`.`id` and (`username` like ?)))',
+            'select * from `test_user_profiles` where `post_code` like ? or (`test_user_profiles`.`user_id` in (select `test_users`.`id` from `test_users` where `test_user_profiles`.`user_id` = `test_users`.`id` and `username` like ?))',
             $sql2
         );
     }

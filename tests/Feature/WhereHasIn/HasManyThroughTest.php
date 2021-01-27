@@ -42,7 +42,7 @@ class HasManyThroughTest extends TestCase
         })->where('name', 'China')->toSql();
 
         $this->assertEquals(
-            'select * from `test_countries` where `test_countries`.`id` in (select `test_users`.`country_id` from `test_posts` inner join `test_users` on `test_users`.`id` = `test_posts`.`user_id` where `test_countries`.`id` = `test_users`.`country_id` and (`title` like ?)) and `name` = ?',
+            'select * from `test_countries` where `test_countries`.`id` in (select `test_users`.`country_id` from `test_posts` inner join `test_users` on `test_users`.`id` = `test_posts`.`user_id` where `test_countries`.`id` = `test_users`.`country_id` and `title` like ?) and `name` = ?',
             $sql2
         );
     }

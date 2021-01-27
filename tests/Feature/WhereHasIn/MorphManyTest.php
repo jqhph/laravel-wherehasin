@@ -33,7 +33,7 @@ class MorphManyTest extends TestCase
         })->sql();
 
         $this->assertEquals(
-            'select * from `test_posts` where `test_posts`.`id` in (select `comments`.`commentable_id` from `comments` where `test_posts`.`id` = `comments`.`commentable_id` and `comments`.`commentable_type` = Dcat\Laravel\Database\Tests\Models\Post and (`id` > 10))',
+            'select * from `test_posts` where `test_posts`.`id` in (select `comments`.`commentable_id` from `comments` where `test_posts`.`id` = `comments`.`commentable_id` and `comments`.`commentable_type` = Dcat\Laravel\Database\Tests\Models\Post and `id` > 10)',
             $sql2
         );
     }

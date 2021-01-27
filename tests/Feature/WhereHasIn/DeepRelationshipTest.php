@@ -75,7 +75,7 @@ class DeepRelationshipTest extends TestCase
         })->toSql();
 
         $this->assertEquals(
-            'select * from `test_users` where `test_users`.`id` in (select `test_user_painters`.`user_id` from `test_painters` inner join `test_user_painters` on `test_painters`.`id` = `test_user_painters`.`painter_id` where `test_users`.`id` = `test_user_painters`.`user_id` and `test_painters`.`id` in (select `test_paintings`.`painter_id` from `test_paintings` where `test_painters`.`id` = `test_paintings`.`painter_id` and (`id` < ?)))',
+            'select * from `test_users` where `test_users`.`id` in (select `test_user_painters`.`user_id` from `test_painters` inner join `test_user_painters` on `test_painters`.`id` = `test_user_painters`.`painter_id` where `test_users`.`id` = `test_user_painters`.`user_id` and `test_painters`.`id` in (select `test_paintings`.`painter_id` from `test_paintings` where `test_painters`.`id` = `test_paintings`.`painter_id` and `id` < ?))',
             $sql2
         );
     }

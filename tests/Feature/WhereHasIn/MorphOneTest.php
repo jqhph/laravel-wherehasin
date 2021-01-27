@@ -33,7 +33,7 @@ class MorphOneTest extends TestCase
         })->sql();
 
         $this->assertEquals(
-            'select * from `test_posts` where `test_posts`.`id` in (select `test_images`.`imageable_id` from `test_images` where `test_posts`.`id` = `test_images`.`imageable_id` and `test_images`.`imageable_type` = Dcat\Laravel\Database\Tests\Models\Post and (`id` > 10))',
+            'select * from `test_posts` where `test_posts`.`id` in (select `test_images`.`imageable_id` from `test_images` where `test_posts`.`id` = `test_images`.`imageable_id` and `test_images`.`imageable_type` = Dcat\Laravel\Database\Tests\Models\Post and `id` > 10)',
             $sql2
         );
     }

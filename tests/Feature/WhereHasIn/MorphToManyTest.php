@@ -44,7 +44,7 @@ class MorphToManyTest extends TestCase
         })->sql();
 
         $this->assertEquals(
-            'select * from `test_posts` where `test_posts`.`id` in (select `taggables`.`taggable_id` from `test_tags` inner join `taggables` on `test_tags`.`id` = `taggables`.`tag_id` where `test_posts`.`id` = `taggables`.`taggable_id` and `taggables`.`taggable_type` = Dcat\Laravel\Database\Tests\Models\Post and (`id` > 10))',
+            'select * from `test_posts` where `test_posts`.`id` in (select `taggables`.`taggable_id` from `test_tags` inner join `taggables` on `test_tags`.`id` = `taggables`.`tag_id` where `test_posts`.`id` = `taggables`.`taggable_id` and `taggables`.`taggable_type` = Dcat\Laravel\Database\Tests\Models\Post and `id` > 10)',
             $sql2
         );
     }

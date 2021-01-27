@@ -43,7 +43,7 @@ class BelongsToManyTest extends TestCase
         })->toSql();
 
         $this->assertEquals(
-            'select * from `test_users` where `test_users`.`id` in (select `test_user_tags`.`user_id` from `test_tags` inner join `test_user_tags` on `test_tags`.`id` = `test_user_tags`.`tag_id` where `test_users`.`id` = `test_user_tags`.`user_id` and (`id` > ? and `name` like ?))',
+            'select * from `test_users` where `test_users`.`id` in (select `test_user_tags`.`user_id` from `test_tags` inner join `test_user_tags` on `test_tags`.`id` = `test_user_tags`.`tag_id` where `test_users`.`id` = `test_user_tags`.`user_id` and `id` > ? and `name` like ?)',
             $sql2
         );
     }
@@ -81,7 +81,7 @@ class BelongsToManyTest extends TestCase
         })->toSql();
 
         $this->assertEquals(
-            'select * from `test_users` where `id` > ? or (`test_users`.`id` in (select `test_user_tags`.`user_id` from `test_tags` inner join `test_user_tags` on `test_tags`.`id` = `test_user_tags`.`tag_id` where `test_users`.`id` = `test_user_tags`.`user_id` and (`id` > ? and `username` like ?)))',
+            'select * from `test_users` where `id` > ? or (`test_users`.`id` in (select `test_user_tags`.`user_id` from `test_tags` inner join `test_user_tags` on `test_tags`.`id` = `test_user_tags`.`tag_id` where `test_users`.`id` = `test_user_tags`.`user_id` and `id` > ? and `username` like ?))',
             $sql2
         );
     }
