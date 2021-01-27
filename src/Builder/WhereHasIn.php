@@ -184,12 +184,6 @@ class WhereHasIn
      */
     protected function withRelationQueryCallback($relationQuery)
     {
-        if ($this->nextRelation) {
-            $relationQuery->whereHasIn($this->nextRelation, $this->callback);
-        } elseif ($this->callback) {
-            $relationQuery->where($this->callback);
-        }
-
-        return $relationQuery;
+        return call_user_func($this->callback, $this->nextRelation, $relationQuery);
     }
 }
