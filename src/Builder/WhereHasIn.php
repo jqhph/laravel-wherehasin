@@ -63,7 +63,7 @@ class WhereHasIn
             throw new \Exception('Please use whereHasMorphIn() for MorphTo relationships.');
         }
 
-        $relationQuery = $relation->getQuery();
+        $relationQuery = $this->getRelationQuery($relation);
 
         if (
             $relation instanceof Relations\MorphOne
@@ -145,6 +145,29 @@ class WhereHasIn
         }
 
         throw new \Exception(sprintf('%s does not support "whereHasIn".', get_class($relation)));
+    }
+
+    /**
+     * @param Relations\Relation $relation
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    protected function getRelationQuery($relation)
+    {
+        $q = $relation->getQuery();
+
+        if ($this->builder->getModel()->getConnectionName() !== $q->getModel()->getConnectionName()) {
+            $databaseName = $this->getRelationDatabaseName($q);
+
+            $q->from("{$databaseName}.{$q->getModel()->getTable()}");
+        }
+
+        return $q;
+    }
+
+    protected function getRelationDatabaseName($q)
+    {
+        return config('database.connections.'.$q->getModel()->getConnectionName().'.database');
     }
 
     protected function getRelationQualifiedForeignKeyName($relation)
