@@ -30,7 +30,7 @@ jobs:
           # MYSQL_ROOT_PASSWORD - root superuser password
           mysql root password: 123456
           # MYSQL_DATABASE - name for the default database that is created
-          mysql database: laravel_test
+          mysql database: laravel
           # MYSQL_USER - create the specified user with superuser power for created database
           mysql user: root
           # MYSQL_PASSWORD - specified superuser password which user is power for created database
