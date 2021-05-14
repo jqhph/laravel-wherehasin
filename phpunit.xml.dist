@@ -15,4 +15,7 @@
             <directory>tests/</directory>
         </testsuite>
     </testsuites>
+    <php>
+        <env name="DB_PASSWORD" value="123456"/>
+    </php>
 </phpunit>
