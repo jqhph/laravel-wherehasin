@@ -17,8 +17,9 @@
     </testsuites>
     <php>
         <server name="APP_ENV" value="testing"/>
-        <env name="DB_DATABASE" value="laravel"/>
-        <env name="DB_USERNAME" value="root"/>
-        <env name="DB_PASSWORD" value="123456"/>
+        <server name="DB_HOST" value="127.0.0.1"/>
+        <server name="DB_DATABASE" value="laravel"/>
+        <server name="DB_USERNAME" value="root"/>
+        <server name="DB_PASSWORD" value="123456"/>
     </php>
 </phpunit>

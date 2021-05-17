@@ -37,10 +37,7 @@ jobs:
           mysql password: 123456
 
       - name: Install Dependencies
-        run: |
-          composer install --no-interaction
-          rm -rf ./vendor/laravel/laravel/.env
-          cp -f ./.env.testing ./vendor/laravel/laravel/.env
+        run: composer install --no-interaction
 
       - name: Run test suite
         run: composer test
