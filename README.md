@@ -4,8 +4,8 @@
 
 <p>
     <a href="https://github.com/jqhph/laravel-wherehasin/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-7389D8.svg?style=flat" ></a>
-     <a href="https://travis-ci.org/jqhph/laravel-wherehasin">
-        <img src="https://api.travis-ci.org/jqhph/laravel-wherehasin.svg?branch=master" alt="Build Status">
+     <a href="https://github.com/jqhph/laravel-wherehasin/actions">
+        <img src="https://github.com/jqhph/laravel-wherehasin/workflows/Phpunit/badge.svg" alt="Build Status">
     </a>
      <a href="https://styleci.io/repos/215738797">
         <img src="https://github.styleci.io/repos/215738797/shield" alt="StyleCI">
