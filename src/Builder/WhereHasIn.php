@@ -4,6 +4,7 @@ namespace Dcat\Laravel\Database\Builder;
 
 use Illuminate\Database\Eloquent;
 use Illuminate\Database\Eloquent\Relations;
+use Illuminate\Support\Str;
 
 class WhereHasIn
 {
@@ -158,8 +159,11 @@ class WhereHasIn
 
         if ($this->builder->getModel()->getConnectionName() !== $q->getModel()->getConnectionName()) {
             $databaseName = $this->getRelationDatabaseName($q);
+            $table = $q->getModel()->getTable();
 
-            $q->from("{$databaseName}.{$q->getModel()->getTable()}");
+            if (! Str::contains($table, ["`$databaseName`.", "{$databaseName}."])) {
+                $q->from("{$databaseName}.{$table}");
+            }
         }
 
         return $q;
