@@ -28,6 +28,11 @@ class WhereHasIn
      */
     protected $callback;
 
+    /**
+     * @var string
+     */
+    protected $method = 'whereIn';
+
     public function __construct(Eloquent\Builder $builder, $relation, $callback)
     {
         $this->builder = $builder;
@@ -46,7 +51,7 @@ class WhereHasIn
             return $this->builder;
         }
 
-        return $this->whereIn(
+        return $this->where(
             $this->formatRelation()
         );
     }
@@ -58,19 +63,20 @@ class WhereHasIn
      *
      * @throws \Exception
      */
-    protected function whereIn($relation)
+    protected function where($relation)
     {
         if ($relation instanceof Relations\MorphTo) {
             throw new \Exception('Please use whereHasMorphIn() for MorphTo relationships.');
         }
 
         $relationQuery = $this->getRelationQuery($relation);
+        $method = $this->method;
 
         if (
             $relation instanceof Relations\MorphOne
             || $relation instanceof Relations\MorphMany
         ) {
-            return $this->builder->whereIn(
+            return $this->builder->{$method}(
                 $relation->getQualifiedParentKeyName(),
                 $this->withRelationQueryCallback(
                     $relationQuery
@@ -82,7 +88,7 @@ class WhereHasIn
         }
 
         if ($relation instanceof Relations\MorphToMany) {
-            return $this->builder->whereIn(
+            return $this->builder->{$method}(
                 $relation->getQualifiedParentKeyName(),
                 $this->withRelationQueryCallback(
                     $relationQuery
@@ -95,7 +101,7 @@ class WhereHasIn
 
         // BelongsTo
         if ($relation instanceof Relations\BelongsTo) {
-            return $this->builder->whereIn(
+            return $this->builder->{$method}(
                 $this->getRelationQualifiedForeignKeyName($relation),
                 $this->withRelationQueryCallback(
                     $relationQuery
@@ -109,7 +115,7 @@ class WhereHasIn
             $relation instanceof Relations\HasOne
             || $relation instanceof Relations\HasMany
         ) {
-            return $this->builder->whereIn(
+            return $this->builder->{$method}(
                 $relation->getQualifiedParentKeyName(),
                 $this->withRelationQueryCallback(
                     $relationQuery
@@ -121,7 +127,7 @@ class WhereHasIn
 
         // BelongsToMany
         if ($relation instanceof Relations\BelongsToMany) {
-            return $this->builder->whereIn(
+            return $this->builder->{$method}(
                 $relation->getQualifiedParentKeyName(),
                 $this->withRelationQueryCallback(
                     $relationQuery
@@ -135,7 +141,7 @@ class WhereHasIn
             $relation instanceof Relations\HasOneThrough
             || $relation instanceof Relations\HasManyThrough
         ) {
-            return $this->builder->whereIn(
+            return $this->builder->{$method}(
                 $relation->getQualifiedLocalKeyName(),
                 $this->withRelationQueryCallback(
                     $relationQuery
